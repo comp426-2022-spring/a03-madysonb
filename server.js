@@ -21,12 +21,6 @@ app.get('/app/', (req, res) => {
     res.end(res.statusCode + ' ' + res.statusMessage)
 });
 
-// Default response for any other request
-app.use(function (req, res) {
-    res.status(404).send('404 NOT FOUND')
-});
-
-
 // Response and Request
 app.get('/app/flips/:number', (req, res) => {
     const flips = coinFlips(req.params.number)
@@ -34,11 +28,21 @@ app.get('/app/flips/:number', (req, res) => {
     res.status(200).json({ "raw": flips, "summary": count })
 });
 
+app.get('/app/flip', (req, res) => {
+    res.status(200).json({'flip': coinFlip()})
+});
+
 app.get('/app/flip/call/:guess(heads|tails)', (req, res) => {
     const game = flipACoin(req.params.guess)
     res.status(200).json(game)
 });
 
+
+
+// Default response for any other request
+app.use(function (req, res) {
+    res.status(404).send('404 NOT FOUND')
+});
 
 
 // coin functions
