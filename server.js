@@ -3,8 +3,8 @@ const express = require('express')
 const app = express()
 
 const args = require("minimist")(process.argv.slice(2))
-args['HTTP_PORT']
-const HTTP_PORT = args.HTTP_PORT || 5000
+args['port']
+const HTTP_PORT = args.port
 
 // Start an app server
 const server = app.listen(HTTP_PORT, () => {
