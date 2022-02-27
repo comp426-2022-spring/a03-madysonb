@@ -14,6 +14,7 @@ app.use(function(req, res){
     res.status(404).send('404 NOT FOUND')
 });
 
+// Define default endpoint
 app.get('/app/', (req, res) => {
     // Respond with status 200
         res.statusCode = 200;
@@ -21,4 +22,12 @@ app.get('/app/', (req, res) => {
         res.statusMessage = 'OK';
         res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
         res.end(res.statusCode+ ' ' +res.statusMessage)
-    });
+});
+
+
+// Response and Request
+app.get('/app/flips/:number', (req, res) => {
+    const flips = coinFlips(req.params.number)
+    const count = countFlips(flips)
+    res.status(200).json({"raw":flips,"summary":count})
+});
