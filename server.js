@@ -36,6 +36,6 @@ app.get('/app/flips/:number', (req, res) => {
 });
 
 app.get('/app/flips/:number', (req, res) => {
-	const flips = manyflips(req.params.number)
+	const flips = coinFlips(req.params.number)
 	res.status(200).json(game)
 });
