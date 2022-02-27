@@ -31,3 +31,8 @@ app.get('/app/flips/:number', (req, res) => {
     const count = countFlips(flips)
     res.status(200).json({"raw":flips,"summary":count})
 });
+
+app.get('/app/flips/:number', (req, res) => {
+	const flips = manyflips(req.params.number)
+	res.status(200).json(game)
+});
